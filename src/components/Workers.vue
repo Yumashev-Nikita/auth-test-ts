@@ -15,7 +15,6 @@ import { useWorkers } from '../stores/workers'
 import { computed } from 'vue';
 import { defineComponent } from 'vue'
 import { getToken } from '../api/auth'
-import { WorkerData } from '../api/base';
 
 import WorkerCard from './WorkerCard.vue'
 

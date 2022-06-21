@@ -1,10 +1,14 @@
 <template lang='pug'>
 .top-nav-bar
   .top-nav-bar__block-container
-    router-link(to='/workers'
-    class='top-nav-bar__block nav-bar-block-text rl-ns') Сотрудники
-    router-link(to='/auth'
-    class='top-nav-bar__block nav-bar-block-text rl-ns') Авторизация
+    router-link(
+      to='/workers'
+      class='top-nav-bar__block nav-bar-block-text rl-ns'
+    ) Сотрудники
+    router-link(
+      to='/auth'
+      class='top-nav-bar__block nav-bar-block-text rl-ns'
+    ) Авторизация
 <router-view></router-view>
 </template>
 

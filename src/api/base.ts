@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export interface WorkerData {
-  email: String,
   id: Number,
+  email: String,
   image: String,
   login: String,
   name: String,

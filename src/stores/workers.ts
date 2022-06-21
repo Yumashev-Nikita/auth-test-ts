@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { getWorkers } from '../api/workers'
-import { WorkerData } from '../api/base';
 
 export const useWorkers = defineStore('useWorkers', {
   state: () => {

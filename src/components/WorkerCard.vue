@@ -1,7 +1,12 @@
 <template lang="pug">
 .worker
-  img(class='worker__image' :src='image')
-  span(class='worker__name') {{ name }}
+  img(
+    class='worker__image'
+    :src='image'
+  )
+  span(
+    class='worker__name'
+  ) {{ name }}
 </template>
 
 <script lang='ts'>
