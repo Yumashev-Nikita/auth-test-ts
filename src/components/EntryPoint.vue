@@ -8,15 +8,23 @@
     router-link(
       to='/auth'
       class='top-nav-bar__block nav-bar-block-text rl-ns'
-    ) Авторизация
+    ) {{ nameStatic }}
 <router-view></router-view>
 </template>
 
 <script lang='ts'>
+import { useAuth } from '../stores/auth'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'entry-point',
+  setup() {
+    const authStore = useAuth();
+    authStore.setStaticName();
+    return {
+      nameStatic: authStore.$state.nameStatic,
+    };
+  },
 });
 </script>
 
