@@ -4,9 +4,8 @@ import { getWorkers } from '../api/workers'
 export const useWorkers = defineStore('useWorkers', {
   state: () => {
     return {
-      page: 1,
-      pages: 9,
-      workers: Array(),
+      page: Number(),
+      workers: Object(),
     };
   },
   getters: {

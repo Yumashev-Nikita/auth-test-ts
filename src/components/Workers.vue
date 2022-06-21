@@ -34,9 +34,9 @@ export default defineComponent({
     getToken();
     workersStore.pullWorkers();
     return {
-      setPage: (page: Number) => workersStore.setPage(page),
-      workers: computed(() => workersStore.$state.workers),
-      pages: computed(() => workersStore.$state.pages),
+      setPage: (page: number) => workersStore.setPage(page),
+      workers: computed(() => workersStore.$state.workers.data),
+      pages: computed(() => workersStore.$state.workers.last_page),
     };
   },
 });

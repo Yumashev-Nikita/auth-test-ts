@@ -1,5 +1,5 @@
-import { MainApi, WorkerData } from './base';
+import { MainApi } from './base';
 
-export async function getWorkers(page: Number): Promise<WorkerData[]> {
-  return (await MainApi.get(`/workers?page=${page}`)).data.data;
+export async function getWorkers(page: Number): Promise<{ data: any, last_page: number }> {
+  return (await MainApi.get(`/workers?page=${page}`)).data;
 };
