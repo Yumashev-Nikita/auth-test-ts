@@ -8,6 +8,7 @@
     class='worker__name'
   ) {{ name }}
   router-link(
+    class='worker__profile-link'
     :to="{ name: 'worker', params: { id: id }}"
   ) Открыть профиль
 </template>

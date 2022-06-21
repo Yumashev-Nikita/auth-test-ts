@@ -6,7 +6,11 @@ div(v-if='worker !== undefined')
       tr
         td
           .worker__image
-            img(:src='worker.image' width='375' height='375')
+            img(
+              :src='worker.image'
+              width='375'
+              height='375'
+            )
         td
           .data-container
             .worker__name {{ worker.name }}
