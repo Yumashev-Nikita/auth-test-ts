@@ -7,6 +7,9 @@
   span(
     class='worker__name'
   ) {{ name }}
+  router-link(
+    :to="{ name: 'worker', params: { id: id }}"
+  ) Открыть профиль
 </template>
 
 <script lang='ts'>
