@@ -21,7 +21,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="sass">
-@use './style/textstyles'
+@use './style/_textpresets'
 .top-nav-bar
   position: fixed
   top: 0px
@@ -44,4 +44,28 @@ export default defineComponent({
     margin: 0px 10px
 .rl-ns
   text-decoration: none
+
+.nav-bar-block-text
+  @extend %maintypo
+  @extend %h2semibold
+  color: white
+  transition: color 0.1s
+  cursor: pointer
+  user-select: none
+  &:hover
+    color: #5c5c5c
+
+.signIn-text
+  @extend %maintypo
+  @extend %h1semibold
+
+.commit-text
+  @extend %maintypo
+  @extend %h2semibold
+  color: black
+  transition: color 0.1s
+  cursor: pointer
+  user-select: none
+  &:hover
+    color: #383838
 </style>

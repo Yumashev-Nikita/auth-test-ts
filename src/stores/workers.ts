@@ -5,6 +5,7 @@ export const useWorkers = defineStore('useWorkers', {
   state: () => {
     return {
       page: 1,
+      pages: 9,
       workers: Array(),
     };
   },
@@ -12,5 +13,9 @@ export const useWorkers = defineStore('useWorkers', {
   },
   actions: {
     async pullWorkers() { this.workers = await getWorkers(this.page); },
+    async setPage(page: number) {
+      this.page = page;
+      this.workers = await getWorkers(this.page);
+    },
   },
 });

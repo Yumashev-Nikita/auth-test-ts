@@ -3,8 +3,14 @@ import Workers from '../components/Workers.vue'
 import Authentification from '../components/Authentification.vue'
 
 const routes = [
-  { path: '/workers', component: Workers},
-  { path: '/auth', component: Authentification},
+  {
+    path: '/workers',
+    component: Workers,
+  },
+  {
+    path: '/auth',
+    component: Authentification,
+  },
 ];
 
 const router = createRouter({

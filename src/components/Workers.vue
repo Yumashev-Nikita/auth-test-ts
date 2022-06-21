@@ -1,5 +1,11 @@
 <template lang='pug'>
 .workers-container
+  .page-list
+    span(class='arrow') &lt
+    span(v-for='page in pages' :key='page'
+    class='page-number page-number-text'
+    @click='setPage(page)') {{ page }}
+    span(class='arrow') >
   .workers
     WorkerCard(
       v-for='worker in workers'
@@ -28,7 +34,9 @@ export default defineComponent({
     getToken();
     workersStore.pullWorkers();
     return {
+      setPage: (page: Number) => workersStore.setPage(page),
       workers: computed(() => workersStore.$state.workers),
+      pages: computed(() => workersStore.$state.pages),
     };
   },
 });
