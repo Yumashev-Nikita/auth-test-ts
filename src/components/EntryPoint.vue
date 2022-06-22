@@ -2,17 +2,30 @@
 .top-nav-bar
   .top-nav-bar__block-container
     router-link(
+      v-if='authentificated'
       to='/workers'
       class='top-nav-bar__block nav-bar-block-text rl-ns'
     ) Сотрудники
     router-link(
+      v-if='!authentificated'
       to='/auth'
+      class='top-nav-bar__block nav-bar-block-text rl-ns'
+    ) Sign-in
+    router-link(
+      v-if='!authentificated'
+      to='/register'
+      class='top-nav-bar__block nav-bar-block-text rl-ns'
+    ) Sign-up
+    router-link(
+      v-if='authentificated'
+      to='/profile'
       class='top-nav-bar__block nav-bar-block-text rl-ns'
     ) {{ nameStatic }}
 <router-view></router-view>
 </template>
 
 <script lang='ts'>
+import { computed } from 'vue';
 import { useAuth } from '../stores/auth'
 import { defineComponent } from 'vue'
 
@@ -20,9 +33,12 @@ export default defineComponent({
   name: 'entry-point',
   setup() {
     const authStore = useAuth();
-    authStore.setStaticName();
+    if (localStorage.getItem('authToken') !== null) {
+      authStore.getUser();
+    }
     return {
-      nameStatic: authStore.$state.nameStatic,
+      nameStatic: computed(() => authStore.$state.nameStatic),
+      authentificated: computed(() => authStore.checkToken),
     };
   },
 });

@@ -5,7 +5,7 @@ export const useWorkers = defineStore('useWorkers', {
   state: () => {
     return {
       page: Number(),
-      workers: Object(),
+      workers: { data: Array(), last_page: Number() },
     };
   },
   getters: {

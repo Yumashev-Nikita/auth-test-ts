@@ -1,6 +1,10 @@
 import { MainApi } from './base';
+import router from '../router'
 
-export function getToken() {
-  MainApi.post('/auth/login', { email: 'libradrago79@gmail.com', password: '6pYIYy5wCN', })
-    .then((response) => { localStorage.setItem('authToken', response.data.token);});
+export function getToken(payload: { email: String, password: String }) {
+  MainApi.post('/auth/login', payload)
+    .then((response) => {
+      localStorage.setItem('authToken', response.data.token);
+      router.push('/workers');
+    });
 };

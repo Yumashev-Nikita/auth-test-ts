@@ -1,6 +1,9 @@
 import { MainApi } from './base';
 
-export async function getUser(payload: { email: String, password: String, }): Promise<{ data: any }> {
-  console.log(await MainApi.get('/user'));
-  return await MainApi.get('/user');
+export async function getUser(): Promise<Object> {
+  return (await MainApi.get('/user')).data;
+};
+
+export async function updateUser(payload: Object): Promise<Object> {
+  return (await MainApi.post('/user', payload)).data;
 };

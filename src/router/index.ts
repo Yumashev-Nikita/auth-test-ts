@@ -2,6 +2,9 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import Workers from '../components/Workers.vue'
 import WorkerWindow from '../components/WorkerWindow.vue'
 import Authentification from '../components/Authentification.vue'
+import Registration from '../components/Registration.vue'
+import Profile from '../components/Profile.vue'
+
 
 const routes = [
   {
@@ -11,6 +14,14 @@ const routes = [
   {
     path: '/auth',
     component: Authentification,
+  },
+  {
+    path: '/register',
+    component: Registration,
+  },
+  {
+    path: '/profile',
+    component: Profile,
   },
   {
     path: '/worker/:id',

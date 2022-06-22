@@ -31,7 +31,6 @@ export default defineComponent({
   },
   setup() {
     const workersStore = useWorkers(); 
-    getToken();
     workersStore.pullWorkers();
     return {
       setPage: (page: number) => workersStore.setPage(page),
