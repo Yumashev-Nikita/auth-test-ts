@@ -16,12 +16,12 @@
       v-model='password'
     )
   span(
-    class='common-text cursor-pointer grey-hover'
+    class='common-text cursor-pointer grey-hover generic-window__button'
     @click='login({ email, password })'
   ) Подтвердить
   router-link(
     to='/restore/request'
-    class='rl-ns common-text cursor-pointer grey-hover'
+    class='rl-ns common-text cursor-pointer grey-hover generic-window__button'
   ) Забыл пароль
 </template>
 

@@ -9,7 +9,7 @@
       v-model='email'
     )
   span(
-    class='common-text cursor-pointer grey-hover'
+    class='common-text cursor-pointer grey-hover generic-window__button'
     @click='restoreRequest({ email })'
   ) Отправить
   div(
@@ -27,7 +27,7 @@ export default defineComponent({
   name: 'restore-request',
   data() {
     return {
-      email: 'libra79@gmail.com',
+      email: 'libradrago79@gmail.com',
     };
   },
   setup() {

@@ -23,7 +23,7 @@
       v-model='type'
     )
   span(
-    class='common-text cursor-pointer grey-hover'
+    class='common-text cursor-pointer grey-hover generic-window__button'
     @click='register({ email, name, type })'
   ) Подтвердить
   div(

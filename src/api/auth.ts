@@ -8,6 +8,6 @@ export async function registerUser(payload: { email: String, name: String, type:
   return await MainApi.post('/auth/register', payload);
 };
 
-export async function restoreRequest(payload: { email: String }): Promise<{ data: String, status: number }> {
+export async function restoreRequest(payload: { email: String }): Promise<{ data: string, status: number }> {
   return await MainApi.post('/auth/restore', payload);
 };
