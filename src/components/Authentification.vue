@@ -19,6 +19,10 @@
     class='common-text cursor-pointer grey-hover'
     @click='login({ email, password })'
   ) Подтвердить
+  router-link(
+    to='/restore/request'
+    class='rl-ns common-text cursor-pointer grey-hover'
+  ) Забыл пароль
 </template>
 
 <script lang='ts'>

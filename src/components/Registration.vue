@@ -27,7 +27,7 @@
     @click='register({ email, name, type })'
   ) Подтвердить
   div(
-    class='generic-window__notification'
+    class='generic-window__notification notif_red'
     v-if='registerNotif !== ""'
   ) {{ registerNotif }}
 </template>
@@ -38,7 +38,7 @@ import { computed } from 'vue';
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'authentification',
+  name: 'registration',
   data() {
     return {
       email: 'libra79@gmail.com',

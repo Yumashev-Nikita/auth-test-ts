@@ -7,3 +7,7 @@ export async function getToken(payload: { email: String, password: String }): Pr
 export async function registerUser(payload: { email: String, name: String, type: String }): Promise<{ data: { message: string, token: string }, status: number }> {
   return await MainApi.post('/auth/register', payload);
 };
+
+export async function restoreRequest(payload: { email: String }): Promise<{ data: String, status: number }> {
+  return await MainApi.post('/auth/restore', payload);
+};

@@ -10,9 +10,7 @@ export const MainApi = axios.create({
 
 MainApi.interceptors.request.use(
   (request: any) => {
-    if (localStorage.getItem('authToken') === null) {
-      router.push('/auth');
-    } else {
+    if (localStorage.getItem('authToken') !== null) {
       request.headers.Authorization = `Bearer ${localStorage.getItem('authToken')}`;
     }
     return request;
