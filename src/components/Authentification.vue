@@ -3,12 +3,18 @@
   .generic-window__label.common-text Войти
   .generic-window__input-container
     span(class='common-text') Логин
-    input(class='generic-window__input-area common-text' placeholder='...'
-    v-model='email')
+    input(
+      class='generic-window__input-area common-text'
+      placeholder='...'
+      v-model='email'
+    )
   .generic-window__input-container
     span(class='common-text') Пароль
-    input(class='generic-window__input-area common-text' placeholder='...'
-    v-model='password')
+    input(
+      class='generic-window__input-area common-text'
+      placeholder='...'
+      v-model='password'
+    )
   span(
     class='common-text cursor-pointer grey-hover'
     @click='login({ email, password })'

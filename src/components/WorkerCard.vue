@@ -39,6 +39,7 @@ export default defineComponent({
     @extend %maintypo
     @extend %h2semibold
     margin: 5px 0
+    margin-top: 15px
   &__profile-link
     @extend %maintypo
     @extend %h2semibold

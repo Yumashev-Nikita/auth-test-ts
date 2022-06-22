@@ -21,6 +21,12 @@
       to='/profile'
       class='top-nav-bar__block nav-bar-block-text rl-ns'
     ) {{ nameStatic }}
+    router-link(
+      v-if='authentificated'
+      to='/auth'
+      class='top-nav-bar__block nav-bar-block-text rl-ns'
+      @click='logout'
+    ) Log-out
 <router-view></router-view>
 </template>
 
@@ -40,6 +46,7 @@ export default defineComponent({
     return {
       nameStatic: computed(() => authStore.$state.nameStatic),
       authentificated: computed(() => authStore.getAuthState),
+      logout: () => authStore.logout(),
     };
   },
 });

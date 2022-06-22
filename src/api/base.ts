@@ -27,8 +27,12 @@ MainApi.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.log('RESPONSE ERROR', error);
-    router.push('/auth');
-    return error;
+    console.log('RESPONSE ERROR', error.response.status);
+    if (error.response.status === 409 || error.response.status === 408) {
+      router.push('/register');
+    } else {
+      router.push('/auth');
+    }
+    return error.response;
   }
 );

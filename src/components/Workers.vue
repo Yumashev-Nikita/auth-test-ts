@@ -2,9 +2,12 @@
 .workers-container
   .page-list
     span(class='arrow') &lt
-    span(v-for='page in pages' :key='page'
-    class='page-number page-number-text'
-    @click='setPage(page)') {{ page }}
+    span(
+      v-for='page in pages'
+      :key='page'
+      class='page-number page-number-text'
+      @click='setPage(page)'
+    ) {{ page }}
     span(class='arrow') >
   .workers
     WorkerCard(
