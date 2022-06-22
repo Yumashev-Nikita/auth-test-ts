@@ -9,7 +9,10 @@
     span(class='common-text') Пароль
     input(class='generic-window__input-area common-text' placeholder='...'
     v-model='password')
-  span(class='common-text' @click='login({ email, password })') Подтвердить
+  span(
+    class='common-text cursor-pointer grey-hover'
+    @click='login({ email, password })'
+  ) Подтвердить
 </template>
 
 <script lang='ts'>
