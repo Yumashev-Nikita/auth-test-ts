@@ -35,10 +35,11 @@ export default defineComponent({
     const authStore = useAuth();
     if (localStorage.getItem('authToken') !== null) {
       authStore.getUser();
+      authStore.$state.authentificated = true;
     }
     return {
       nameStatic: computed(() => authStore.$state.nameStatic),
-      authentificated: computed(() => authStore.checkToken),
+      authentificated: computed(() => authStore.getAuthState),
     };
   },
 });

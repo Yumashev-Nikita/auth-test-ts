@@ -12,13 +12,17 @@ export const useAuth = defineStore('useAuth', {
     };
   },
   getters: {
-    checkToken: () => localStorage.getItem('authToken') !== null,
+    getAuthState: (state) => state.authentificated,
   },
   actions: {
     async login(payload: { email: String, password: String }) {
-      getToken(payload);
-      this.profile = await getUser();
-      this.authentificated = true;
+      if (await getToken(payload) === 200) {
+        this.profile = await getUser();
+        this.authentificated = true;
+        this.nameStatic = this.profile.name;
+      } else {
+        this.authentificated = false;
+      }
     },
     async getUser() {
       this.profile = await getUser();
