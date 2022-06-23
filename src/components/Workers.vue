@@ -12,7 +12,7 @@
   .workers
     WorkerCard(
       v-for='worker in workers'
-      :key='worker.email'
+      :key='worker.id'
       :image='worker.image'
       :name='worker.name'
       :id='worker.id'

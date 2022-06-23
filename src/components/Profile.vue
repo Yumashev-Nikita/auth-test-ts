@@ -71,7 +71,7 @@ export default defineComponent({
     const authStore = useAuth();
     return {
       profile: computed(() => authStore.$state.profile),
-      updateUser: (payload: Object) => authStore.updateUser(payload),
+      updateUser: (payload: any) => authStore.updateUser(payload),
     };
   },
 });

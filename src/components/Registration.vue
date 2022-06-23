@@ -49,7 +49,7 @@ export default defineComponent({
   setup() {
     const authStore = useAuth(); 
     return {
-      register: (payload: { email: String, name: String, type: String }) => { authStore.register(payload); },
+      register: (payload: { email: string, name: string, type: string }) => { authStore.register(payload); },
       registerNotif: computed(() => authStore.$state.registerNotif),
     };
   },

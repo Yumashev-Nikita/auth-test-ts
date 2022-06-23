@@ -33,7 +33,7 @@ export default defineComponent({
   setup() {
     const authStore = useAuth(); 
     return {
-      restoreRequest: (payload: { email: String }) => { authStore.restoreRequest(payload); },
+      restoreRequest: (payload: { email: string }) => { authStore.restoreRequest(payload); },
       restoreReqNotif: computed(() => authStore.$state.restoreReqNotif),
     };
   },

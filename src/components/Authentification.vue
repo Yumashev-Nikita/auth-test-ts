@@ -40,7 +40,7 @@ export default defineComponent({
   setup() {
     const authStore = useAuth(); 
     return {
-      login: (payload: { email: String, password: String, }) => {
+      login: (payload: { email: string, password: string, }) => {
         authStore.login(payload);
         authStore.getUser();
       },

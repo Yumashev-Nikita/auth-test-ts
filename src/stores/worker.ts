@@ -10,6 +10,6 @@ export const useWorker = defineStore('useWorker', {
   getters: {
   },
   actions: {
-    async pullWorker(id: String) { this.worker = await getWorkerById(id); },
+    async pullWorker(id: string) { this.worker = await getWorkerById(id); },
   },
 });

@@ -6,9 +6,10 @@ export const MainApi = axios.create({
   headers: {
     'Content-Type': 'application/json',
   }
-});
+})
 
 MainApi.interceptors.request.use(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (request: any) => {
     if (localStorage.getItem('authToken') !== null) {
       request.headers.Authorization = `Bearer ${localStorage.getItem('authToken')}`;
@@ -19,8 +20,10 @@ MainApi.interceptors.request.use(
     console.log('REQUEST ERROR', error);
     return error;
   }
-);
+)
+
 MainApi.interceptors.response.use(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (response: any) => {
     return response;
   },
@@ -33,4 +36,4 @@ MainApi.interceptors.response.use(
     }
     return error.response;
   }
-);
+)
