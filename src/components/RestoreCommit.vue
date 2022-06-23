@@ -16,8 +16,14 @@
     )
   span(
     class='common-text cursor-pointer grey-hover generic-window__button'
-    @click='restoreCommit({ token, password, password_confirmation })'
+    @click='restoreCommit({ token, password, password_confirmation }); validatePassword(password)'
   ) Отправить
+  div(
+    class='generic-window__notification notif_red'
+    v-if='!validPw'
+    v-for='error in errors'
+    :key='error'
+  ) {{ error }}
   div(
     class='generic-window__notification notif_red'
     v-if='restoreCommitNotif !== ""'
@@ -43,6 +49,9 @@ export default defineComponent({
     return {
       restoreCommit: (payload: { token: string, password: string, password_confirmation: string }) => { authStore.restoreCommit(payload); },
       restoreCommitNotif: computed(() => authStore.$state.restoreCommitNotif),
+      errors:  computed(() => authStore.$state.errors),
+      validPw:  computed(() => authStore.$state.flag_pw),
+      validatePassword: (password: string) => authStore.validatePassword(password),
     };
   },
 });

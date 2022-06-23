@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { getToken, registerUser, restoreRequest, restoreCommit } from '../api/auth'
+import { getToken, registerUser, restoreRequest, restoreCommit, validatePassword } from '../api/auth'
 import { getUser } from '../api/user'
 import { updateUser } from '../api/user'
 import router from '../router'
@@ -14,6 +14,8 @@ export const useAuth = defineStore('useAuth', {
       authentificated: Boolean(),
       nameStatic: String(),
       profile: Object(),
+      flag_pw: Boolean(),
+      errors: Array(String()),
     };
   },
   getters: {
@@ -76,6 +78,11 @@ export const useAuth = defineStore('useAuth', {
     }) {
       this.profile = await updateUser(payload);
       this.nameStatic = this.profile.name;
+    },
+    validatePassword(password: string) {
+      const resp = validatePassword(password);
+      this.errors = resp.errors;
+      this.flag_pw = resp.flag;
     },
   },
 });
