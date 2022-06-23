@@ -34,3 +34,11 @@ export function validatePassword(password: string): { flag: boolean, errors: str
   }
   return { flag: true, errors: errors };
 }
+
+export function validateEmail(email: string): { flag: boolean, error: string } {
+  if (/(.+)@(.+){2,}\.(.+){2,}/.test(email)) {
+    return { flag: true, error: ''};
+  } else {
+    return { flag: false, error: 'Невалидный email.'};
+  }
+}

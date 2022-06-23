@@ -1,13 +1,6 @@
 <template lang='pug'>
 .generic-window
     .generic-window__input-container
-      span(class='common-text') Логин
-      input(
-        class='generic-window__input-area common-text'
-        placeholder='...'
-        v-model='profile.login'
-      )
-    .generic-window__input-container
       span(class='common-text') Имя
       input(
         class='generic-window__input-area common-text'
@@ -16,10 +9,11 @@
       )
     .generic-window__input-container
       span(class='common-text') Почта
-      input(
+      textarea(
+        style='user-select: none; outline: none; cursor: not-allowed;'
         class='generic-window__input-area common-text'
-        placeholder='...'
-        v-model='profile.email'
+        :placeholder='profile.email'
+        readonly
       )
     .generic-window__input-container
       span(class='common-text') Специальность
@@ -34,6 +28,13 @@
         class='generic-window__input-area common-text'
         placeholder='...'
         v-model='profile.github'
+      )
+    .generic-window__input-container
+      span(class='common-text') Telegram
+      input(
+        class='generic-window__input-area common-text'
+        placeholder='...'
+        v-model='profile.telegram'
       )
     .generic-window__input-container
       span(class='common-text') Город

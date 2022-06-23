@@ -15,5 +15,7 @@ export async function updateUser(
     phone: string,
     birthday: string
   }): Promise<Record<string, unknown>> {
-  return (await MainApi.post('/user', payload)).data;
+    const resp = await MainApi.post('/user', payload);
+    console.log(resp);
+    return (resp).data;
 }
