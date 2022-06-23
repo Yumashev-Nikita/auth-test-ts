@@ -56,7 +56,8 @@ export const useAuth = defineStore('useAuth', {
     },
     async restoreCommit(payload: { token: string, password: string, password_confirmation: string }) {
       const resp = await restoreCommit(payload);
-      this.restoreCommitNotif = resp.data;
+      console.log(resp.data.message);
+      this.restoreCommitNotif = resp.data.message;
       console.log(resp);
     },
     async getUser() {

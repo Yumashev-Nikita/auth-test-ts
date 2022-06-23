@@ -27,7 +27,7 @@ const routes = [
     component: RestoreRequest,
   },
   {
-    path: '/restore/commit',
+    path: '/restore/commit/:token',
     component: RestoreCommit,
   },
   {

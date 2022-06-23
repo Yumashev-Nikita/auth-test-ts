@@ -29,7 +29,10 @@ MainApi.interceptors.response.use(
   },
   (error) => {
     console.log('RESPONSE ERROR', error.response.status);
-    if (error.response.status === 409 || error.response.status === 408) {
+    if (error.response.status === 404) {
+      console.log('s');
+      router.push('/restore/commit/xxxx'); 
+    } else if (error.response.status === 409 || error.response.status === 408) {
       router.push('/register');
     } else {
       router.push('/auth');

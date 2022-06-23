@@ -19,7 +19,7 @@
     @click='restoreCommit({ token, password, password_confirmation })'
   ) Отправить
   div(
-    class='generic-window__notification notif_green'
+    class='generic-window__notification notif_red'
     v-if='restoreCommitNotif !== ""'
   ) {{ restoreCommitNotif }}
 </template>
@@ -33,7 +33,7 @@ export default defineComponent({
   name: 'restore-commit',
   data() {
     return {
-      token: '36fewrt324235',
+      token: this.$route.params.token.toString(),
       password: '123456',
       password_confirmation: '123456',
     };
