@@ -1,5 +1,5 @@
 <template lang="pug">
-div(v-if='worker !== undefined')
+div(v-if='worker !== undefined' :class='theme ? "dark" : "light"')
   .worker
     .table-container
     table
@@ -12,7 +12,7 @@ div(v-if='worker !== undefined')
               height='375'
             )
         td
-          .data-container
+          div(class='data-container dark:text-white')
             .worker__name {{ worker.name }}
             .worker__data-line
               .worker__data-line_title Логин:
@@ -36,18 +36,21 @@ div(v-if='worker !== undefined')
 
 <script lang='ts'>
 import { useWorker } from '../stores/worker'
-import { computed } from 'vue';
+import { computed } from 'vue'
 import { defineComponent } from 'vue'
 import { useRoute } from 'vue-router'
+import { useThemeControl } from '../stores/theme-control'
 
 export default defineComponent({
   name: 'worker-window',
   setup() {
-    const workersStore = useWorker(); 
+    const workersStore = useWorker();
+    const themeStore = useThemeControl();
     const route = useRoute();
     workersStore.pullWorker(route.params.id.toString());
     return {
       worker: computed(() => workersStore.$state.worker.data),
+      theme: computed(() => themeStore.getMode),
     };
   },
 });
@@ -64,6 +67,7 @@ export default defineComponent({
     margin-bottom: 15px
   &__image
     margin-right: 50px
+    width: 370px
   &__data-line
     margin: 5px 0
     &_title

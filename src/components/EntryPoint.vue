@@ -1,5 +1,21 @@
 <template lang='pug'>
 .top-nav-bar
+  img(
+    v-if='!theme'
+    class='rounded-lg cursor-pointer theme-button'
+    src='./style/moon.svg'
+    width='30'
+    height='30'
+    @click='switchDarkMode(true)',
+  )
+  img(
+    v-if='theme'
+    class='rounded-lg cursor-pointer theme-button'
+    src='./style/sun.svg'
+    width='30'
+    height='30'
+    @click='switchDarkMode(false)',
+  )
   .top-nav-bar__block-container
     router-link(
       v-if='authentificated'
@@ -27,17 +43,19 @@
       class='top-nav-bar__block nav-bar-block-text rl-ns'
       @click='logout'
     ) Log-out
-<router-view></router-view>
+<router-view style="max-height: auto"></router-view>
 </template>
 
 <script lang='ts'>
-import { computed } from 'vue';
 import { useAuth } from '../stores/auth'
 import { defineComponent } from 'vue'
+import { useThemeControl } from '../stores/theme-control'
+import { computed } from 'vue'
 
 export default defineComponent({
   name: 'entry-point',
   setup() {
+    const themeStore = useThemeControl();
     const authStore = useAuth();
     if (localStorage.getItem('authToken') !== null) {
       authStore.getUser();
@@ -46,6 +64,8 @@ export default defineComponent({
     return {
       nameStatic: computed(() => authStore.$state.nameStatic),
       authentificated: computed(() => authStore.getAuthState),
+      theme: computed(() => themeStore.getMode),
+      switchDarkMode: (mode: boolean) => themeStore.SWITCH_DARK_MODE(mode),
       logout: () => authStore.logout(),
     };
   },
@@ -61,6 +81,7 @@ export default defineComponent({
   height: 50px
   width: 100%
   background-color: black
+  z-index: 100
   &__block-container
     display: flex
     flex-direction: row
@@ -100,4 +121,8 @@ export default defineComponent({
   user-select: none
   &:hover
     color: #383838
+.theme-button
+  position: absolute
+  right: 60px
+  top: 10px
 </style>

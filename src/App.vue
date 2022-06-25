@@ -1,11 +1,29 @@
-<script setup lang='ts'>
-import EntryPoint from './components/EntryPoint.vue';
-</script>
-
 <template lang='pug'>
-.main-container
-  EntryPoint
+div(:class='theme ? "dark" : "light"')
+  div(class='main-container bg-white dark:bg-neutral-800')
+    EntryPoint
 </template>
+
+<script lang='ts'>
+import { defineComponent } from 'vue'
+import { computed } from 'vue';
+import { useThemeControl } from './stores/theme-control'
+
+import EntryPoint from './components/EntryPoint.vue'
+
+export default defineComponent({
+  name: 'app',
+  components: {
+    EntryPoint,
+  },
+  setup() {
+    const themeStore = useThemeControl();
+    return {
+      theme: computed(() => themeStore.getMode),
+    };
+  },
+})
+</script>
 
 <style scoped lang="sass">
 .main-container
@@ -13,6 +31,4 @@ import EntryPoint from './components/EntryPoint.vue';
   top: 0
   left: 0
   width: 100%
-  height: 100%
-  background-color: white
 </style>

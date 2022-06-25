@@ -1,19 +1,22 @@
 <template lang="pug">
-.worker
-  img(
-    class='worker__image'
-    :src='image'
-  )
-  span(
-    class='worker__name'
-  ) {{ name }}
-  router-link(
-    class='worker__profile-link'
-    :to="{ name: 'worker', params: { id: id }}"
-  ) Открыть профиль
+div(:class='theme ? "dark" : "light"')
+  div(class='dark:bg-neutral-600 flex flex-col shadow-xl rounded-lg w-64 h-96 mx-1 mb-5 p-5 dark:text-white')
+    img(
+      class='rounded-lg'
+      :src='image'
+    )
+    span(
+      class='my-2 font-sans text-lg font-normal dark:text-white'
+    ) {{ name }}
+    router-link(
+      class='my-2 font-sans text-lg font-medium hover:text-gray-600 mt-auto transition transform delay-250 hover:-translate-y-1 dark:text-white'
+      :to="{ name: 'worker', params: { id: id }}"
+    ) Открыть профиль
 </template>
 
 <script lang='ts'>
+import { useThemeControl } from '../stores/theme-control'
+import { computed } from 'vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -23,29 +26,11 @@ export default defineComponent({
     name: String,
     id: Number,
   },
+  setup() {
+    const themeStore = useThemeControl();
+    return {
+      theme: computed(() => themeStore.getMode),
+    };
+  },
 });
 </script>
-
-<style lang="sass" scoped>
-@use './style/_textpresets'
-.worker
-  width: 200px
-  margin: 15px 0
-  padding: 0 20px 20px 20px
-  display: flex
-  flex-direction: column
-  border-left: 5px solid
-  &__name
-    @extend %maintypo
-    @extend %h2semibold
-    margin: 5px 0
-    margin-top: 15px
-  &__profile-link
-    @extend %maintypo
-    @extend %h2semibold
-    color: #ff6969
-    text-decoration: none
-    margin: 5px 0
-    &:hover
-      color: #990000
-</style>
