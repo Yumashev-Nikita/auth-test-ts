@@ -1,23 +1,22 @@
 <template lang='pug'>
-div(:class='theme ? "dark" : "light"')
-  .workers-container
-    .page-list
-      span(class='arrow dark:text-white') &lt
-      span(
-        v-for='page in pages'
-        :key='page'
-        class='page-number page-number-text dark:text-white'
-        @click='setPage(page)'
-      ) {{ page }}
-      span(class='arrow dark:text-white') >
-    .workers
-      WorkerCard(
-        v-for='worker in workers'
-        :key='worker.id'
-        :image='worker.image'
-        :name='worker.name'
-        :id='worker.id'
-      )
+.workers-container
+  .page-list
+    span(class='arrow dark:text-white') &lt
+    span(
+      v-for='page in pages'
+      :key='page'
+      class='page-number page-number-text dark:text-white'
+      @click='setPage(page)'
+    ) {{ page }}
+    span(class='arrow dark:text-white') >
+  .workers
+    WorkerCard(
+      v-for='worker in workers'
+      :key='worker.id'
+      :image='worker.image'
+      :name='worker.name'
+      :id='worker.id'
+    )
 </template>
 
 <script lang='ts'>

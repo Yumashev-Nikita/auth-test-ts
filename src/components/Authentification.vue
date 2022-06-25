@@ -1,6 +1,6 @@
 <template lang='pug'>
 .generic-window
-  .generic-window__label.common-text Войти
+  div(class='generic-window__label common-text dark:text-white') Войти
   .generic-window__input-container
     span(class='common-text') Логин
     input(

@@ -43,7 +43,8 @@
       class='top-nav-bar__block nav-bar-block-text rl-ns'
       @click='logout'
     ) Log-out
-<router-view style="max-height: auto"></router-view>
+div(:class='theme ? "dark" : "light"')
+  <router-view></router-view>
 </template>
 
 <script lang='ts'>

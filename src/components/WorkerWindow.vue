@@ -1,5 +1,5 @@
 <template lang="pug">
-div(v-if='worker !== undefined' :class='theme ? "dark" : "light"')
+div(v-if='worker !== undefined')
   .worker
     .table-container
     table
