@@ -2,20 +2,20 @@
 .generic-window
   .generic-window__label.common-text Введите ваш email
   .generic-window__input-container
-    span(class='common-text') Новый пароль
+    span(class='common-text dark:text-white') Новый пароль
     input(
       class='generic-window__input-area common-text'
       placeholder='...'
       v-model='password'
     )
-    span(class='common-text') Подтвердите пароль
+    span(class='common-text dark:text-white') Подтвердите пароль
     input(
       class='generic-window__input-area common-text'
       placeholder='...'
       v-model='password_confirmation'
     )
   span(
-    class='common-text cursor-pointer grey-hover generic-window__button'
+    class='common-text cursor-pointer grey-hover generic-window__button dark:text-white'
     @click='restoreCommit({ token, password, password_confirmation }); validatePassword(password)'
   ) Отправить
   div(

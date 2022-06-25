@@ -1,29 +1,29 @@
 <template lang='pug'>
 .generic-window
-  .generic-window__label.common-text Зарегистрироваться
+  div(class='generic-window__label common-text dark:text-white') Зарегистрироваться
   .generic-window__input-container
-    span(class='common-text') Ваше имя
+    span(class='common-text dark:text-white') Ваше имя
     input(
-      class='generic-window__input-area common-text'
+      class='generic-window__input-area common-text dark:text-white'
       placeholder='...'
       v-model='name'
     )
   .generic-window__input-container
-    span(class='common-text') Ваша почта
+    span(class='common-text dark:text-white') Ваша почта
     input(
       class='generic-window__input-area common-text'
       placeholder='...'
       v-model='email'
     )
   .generic-window__input-container
-    span(class='common-text') Специальность
+    span(class='common-text dark:text-white') Специальность
     input(
       class='generic-window__input-area common-text'
       placeholder='...'
       v-model='type'
     )
   span(
-    class='common-text cursor-pointer grey-hover generic-window__button'
+    class='common-text cursor-pointer grey-hover generic-window__button dark:text-white'
     @click='register({ email, name, type })'
   ) Подтвердить
   div(

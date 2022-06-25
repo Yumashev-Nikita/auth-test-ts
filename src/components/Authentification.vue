@@ -2,26 +2,26 @@
 .generic-window
   div(class='generic-window__label common-text dark:text-white') Войти
   .generic-window__input-container
-    span(class='common-text') Логин
+    span(class='common-text dark:text-white') Логин
     input(
       class='generic-window__input-area common-text'
       placeholder='...'
       v-model='email'
     )
   .generic-window__input-container
-    span(class='common-text') Пароль
+    span(class='common-text dark:text-white') Пароль
     input(
       class='generic-window__input-area common-text'
       placeholder='...'
       v-model='password'
     )
   span(
-    class='common-text cursor-pointer grey-hover generic-window__button'
+    class='common-text cursor-pointer grey-hover generic-window__button dark:text-white'
     @click='login({ email, password })'
   ) Подтвердить
   router-link(
     to='/restore/request'
-    class='rl-ns common-text cursor-pointer grey-hover generic-window__button'
+    class='rl-ns common-text cursor-pointer grey-hover generic-window__button dark:text-white'
   ) Забыл пароль
 </template>
 

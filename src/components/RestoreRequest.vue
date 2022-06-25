@@ -1,15 +1,15 @@
 <template lang='pug'>
 .generic-window
-  .generic-window__label.common-text Введите ваш email
+  div(class='generic-window__label common-text dark:text-white') Введите ваш email
   .generic-window__input-container
-    span(class='common-text') Ваша почта
+    span(class='common-text dark:text-white') Ваша почта
     input(
       class='generic-window__input-area common-text'
       placeholder='...'
       v-model='email'
     )
   span(
-    class='common-text cursor-pointer grey-hover generic-window__button'
+    class='common-text cursor-pointer grey-hover generic-window__button dark:text-white'
     @click='restoreRequest({ email })'
   ) Отправить
   div(
