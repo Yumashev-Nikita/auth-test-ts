@@ -6,7 +6,7 @@ export async function getUser(): Promise<Record<string, unknown>> {
 
 export async function updateUser(
   payload: {
-    show_name: string,
+    name: string,
     about: string,
     github: string,
     city: string,

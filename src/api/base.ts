@@ -17,7 +17,6 @@ MainApi.interceptors.request.use(
     return request;
   },
   (error) => {
-    console.log('REQUEST ERROR', error);
     return error;
   }
 )
@@ -28,12 +27,11 @@ MainApi.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.log('RESPONSE ERROR', error.response.status);
-    if (error.response.status === 404) {
-      console.log('s');
-      router.push('/restore/commit/xxxx'); 
-    } else if (error.response.status === 409 || error.response.status === 408) {
+    const url = error.config.url;
+    if (url === '/auth/register') {
       router.push('/register');
+    } else if (url === '/auth/restore/confirm') {
+      router.push('/restore/commit/xxxx'); 
     } else {
       router.push('/auth');
     }

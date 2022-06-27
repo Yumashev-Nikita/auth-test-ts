@@ -4,7 +4,7 @@
   .generic-window__input-container
     span(class='common-text dark:text-white') Ваше имя
     input(
-      class='generic-window__input-area common-text dark:text-white'
+      class='generic-window__input-area common-text'
       placeholder='...'
       v-model='name'
     )

@@ -1,14 +1,14 @@
 <template lang='pug'>
 .workers-container
   .page-list
-    span(class='arrow dark:text-white') &lt
-    span(
+    div(class='arrow dark:text-white') &lt
+    div(
       v-for='page in pages'
       :key='page'
-      class='page-number page-number-text dark:text-white'
+      class='page-number page-number-text transition transform delay-250 hover:-translate-y-1 dark:text-white'
       @click='setPage(page)'
     ) {{ page }}
-    span(class='arrow dark:text-white') >
+    div(class='arrow dark:text-white') >
   .workers
     WorkerCard(
       v-for='worker in workers'
@@ -57,9 +57,11 @@ export default defineComponent({
   flex-wrap: wrap
   flex-direction: row
 .page-list
+  display: flex
+  flex-direction: row
   margin: 50px 0
 .page-number
-  margin: 10px 5px
+  margin: 0px 5px
 .page-number-text
   @extend %maintypo
   @extend %h1semibold

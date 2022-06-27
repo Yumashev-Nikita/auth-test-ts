@@ -32,6 +32,7 @@
 
 <script lang='ts'>
 import { useAuth } from '../stores/auth'
+import { useValidation } from '../stores/validation'
 import { computed } from 'vue';
 import { defineComponent } from 'vue'
 
@@ -46,12 +47,13 @@ export default defineComponent({
   },
   setup() {
     const authStore = useAuth();
+    const validationStore = useValidation();
     return {
       restoreCommit: (payload: { token: string, password: string, password_confirmation: string }) => { authStore.restoreCommit(payload); },
       restoreCommitNotif: computed(() => authStore.$state.restoreCommitNotif),
-      errors:  computed(() => authStore.$state.errors),
-      validPw:  computed(() => authStore.$state.flag_pw),
-      validatePassword: (password: string) => authStore.validatePassword(password),
+      errors:  computed(() => validationStore.$state.errors_pw),
+      validPw:  computed(() => validationStore.$state.flag_pw),
+      validatePassword: (password: string) => validationStore.validatePassword(password),
     };
   },
 });

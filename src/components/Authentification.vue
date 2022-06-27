@@ -23,11 +23,16 @@
     to='/restore/request'
     class='rl-ns common-text cursor-pointer grey-hover generic-window__button dark:text-white'
   ) Забыл пароль
+  div(
+    class='generic-window__notification notif_red'
+    v-if='authNotif !== ""'
+  ) {{ authNotif }}
 </template>
 
 <script lang='ts'>
 import { useAuth } from '../stores/auth'
 import { defineComponent } from 'vue'
+import { computed } from '@vue/reactivity';
 
 export default defineComponent({
   name: 'authentification',
@@ -44,6 +49,7 @@ export default defineComponent({
         authStore.login(payload);
         authStore.getUser();
       },
+      authNotif: computed(() => authStore.$state.authNotif),
     };
   },
 });

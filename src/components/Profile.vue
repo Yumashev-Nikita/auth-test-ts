@@ -17,10 +17,11 @@
     )
   .generic-window__input-container
     span(class='common-text dark:text-white') Специальность
-    input(
+    textarea(
+      style="user-select: none; outline: none; cursor: not-allowed; resize: none; overflow:hidden; padding: 0 5px;"
       class='generic-window__input-area common-text'
-      placeholder='...'
-      v-model='profile.type'
+      :placeholder='profile.type'
+      readonly
     )
   .generic-window__input-container
     span(class='common-text dark:text-white') Github
@@ -55,10 +56,23 @@
       placeholder='...'
       v-model='profile.birthday'
     )
+  .generic-window__input-container
+    span(class='common-text dark:text-white') Расскажите о себе
+    textarea(
+      class='common-text about-area'
+      placeholder='...'
+      v-model='profile.about'
+    )
   span(
     class='common-text cursor-pointer grey-hover dark:text-white'
     @click='updateUser(profile)'
   ) Сохранить
+  div(
+    class='generic-window__notification notif_red'
+    v-if='!validProfile'
+    v-for='error in errors'
+    :key='error'
+  ) {{ error }}
 </template>
 
 <script lang='ts'>
@@ -66,16 +80,20 @@ import { computed } from 'vue';
 import { useAuth } from '../stores/auth'
 import { defineComponent } from 'vue'
 import { useThemeControl } from '../stores/theme-control'
+import { useValidation } from '../stores/validation';
 
 export default defineComponent({
   name: 'profile',
   setup() {
     const authStore = useAuth();
     const themeStore = useThemeControl();
+    const validationStore = useValidation();
     return {
       profile: computed(() => authStore.$state.profile),
       updateUser: (payload: any) => authStore.updateUser(payload),
       theme: computed(() => themeStore.getMode),
+      validProfile: computed(() => validationStore.$state.flag_profile),
+      errors: computed(() => validationStore.$state.errors_profile),
     };
   },
 });

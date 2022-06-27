@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
-import { getToken, registerUser, restoreRequest, restoreCommit, validatePassword } from '../api/auth'
+import { getToken, registerUser, restoreRequest, restoreCommit } from '../api/auth'
 import { getUser } from '../api/user'
 import { updateUser } from '../api/user'
+import { useValidation } from './validation';
 import router from '../router'
 
 export const useAuth = defineStore('useAuth', {
@@ -9,13 +10,11 @@ export const useAuth = defineStore('useAuth', {
     return {
       authNotif: String(),
       registerNotif: String(),
-      restoreReqNotif: String(),
-      restoreCommitNotif: String(),
       authentificated: Boolean(),
       nameStatic: String(),
       profile: Object(),
-      flag_pw: Boolean(),
-      errors: Array(String()),
+      restoreReqNotif: String(),
+      restoreCommitNotif: String(),
     };
   },
   getters: {
@@ -31,6 +30,7 @@ export const useAuth = defineStore('useAuth', {
         this.authentificated = true;
         this.nameStatic = this.profile.name;
       } else {
+        this.authNotif = resp.data.message,
         this.authentificated = false;
       }
     },
@@ -40,7 +40,7 @@ export const useAuth = defineStore('useAuth', {
     },
     async register(payload: { email: string, name: string, type: string }) {
       const resp = await registerUser(payload);
-      if (resp.status !== 409 && resp.status !== 408) {
+      if (resp.status === 200) {
         localStorage.setItem('authToken', resp.data.token);
         router.push('/workers');
         this.profile = await getUser();
@@ -58,16 +58,18 @@ export const useAuth = defineStore('useAuth', {
     },
     async restoreCommit(payload: { token: string, password: string, password_confirmation: string }) {
       const resp = await restoreCommit(payload);
-      console.log(resp.data.message);
-      this.restoreCommitNotif = resp.data.message;
-      console.log(resp);
+      if (resp.status === 500) {
+        this.restoreCommitNotif = 'Ваша ссылка не действительна.'
+      } else {
+        this.restoreCommitNotif = resp.data.message;
+      }
     },
     async getUser() {
       this.profile = await getUser();
       this.nameStatic = this.profile.name;
     },
     async updateUser(payload: {
-      show_name: string,
+      name: string,
       about: string,
       github: string,
       city: string,
@@ -76,13 +78,11 @@ export const useAuth = defineStore('useAuth', {
       phone: string,
       birthday: string
     }) {
-      this.profile = await updateUser(payload);
-      this.nameStatic = this.profile.name;
-    },
-    validatePassword(password: string) {
-      const resp = validatePassword(password);
-      this.errors = resp.errors;
-      this.flag_pw = resp.flag;
+      const validationStore = useValidation();
+      if (validationStore.validateProfileData(payload)) {
+        this.profile = await updateUser(payload);
+        this.nameStatic = this.profile.name;
+      }
     },
   },
 });
