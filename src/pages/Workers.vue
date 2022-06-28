@@ -6,7 +6,7 @@
       v-for='page in pages'
       :key='page'
       class='page-number page-number-text transition transform delay-250 hover:-translate-y-1 dark:text-white'
-      @click='setPage(page)'
+      @click='handleSetPage(page)'
     ) {{ page }}
     div(class='arrow dark:text-white') >
   .workers
@@ -26,7 +26,7 @@ import { defineComponent } from 'vue'
 import { getToken } from '../api/auth'
 import { useThemeControl } from '../stores/theme-control'
 
-import WorkerCard from './WorkerCard.vue'
+import WorkerCard from '../components/WorkerCard.vue'
 
 export default defineComponent({
   name: 'workers',
@@ -38,7 +38,7 @@ export default defineComponent({
     const themeStore = useThemeControl();
     workersStore.pullWorkers();
     return {
-      setPage: (page: number) => workersStore.setPage(page),
+      handleSetPage: (page: number) => workersStore.setPage(page),
       workers: computed(() => workersStore.$state.workers.data),
       pages: computed(() => workersStore.$state.workers.last_page),
       theme: computed(() => themeStore.getMode),
@@ -48,7 +48,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="sass">
-@use './style/_textpresets'
+@use '../style/_textpresets'
 .workers-container
   width: 1060px
   margin: 100px auto

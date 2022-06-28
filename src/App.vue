@@ -9,7 +9,7 @@ import { defineComponent } from 'vue'
 import { computed } from 'vue';
 import { useThemeControl } from './stores/theme-control'
 
-import EntryPoint from './components/EntryPoint.vue'
+import EntryPoint from './pages/EntryPoint.vue'
 
 export default defineComponent({
   name: 'app',

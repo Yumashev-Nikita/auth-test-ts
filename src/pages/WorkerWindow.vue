@@ -57,7 +57,7 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
-@use './style/_textpresets'
+@use '../style/_textpresets'
 .worker
   margin: 190px auto
   width: 1000px

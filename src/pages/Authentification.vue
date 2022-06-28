@@ -17,16 +17,16 @@
     )
   span(
     class='common-text cursor-pointer grey-hover generic-window__button dark:text-white'
-    @click='login({ email, password })'
+    @click='handleLogin({ email, password })'
   ) Подтвердить
   router-link(
     to='/restore/request'
     class='rl-ns common-text cursor-pointer grey-hover generic-window__button dark:text-white'
   ) Забыл пароль
   div(
-    class='generic-window__notification notif_red'
-    v-if='authNotif !== ""'
-  ) {{ authNotif }}
+    class='generic-window__message message_red'
+    v-if='authMessage !== ""'
+  ) {{ authMessage }}
 </template>
 
 <script lang='ts'>
@@ -45,16 +45,16 @@ export default defineComponent({
   setup() {
     const authStore = useAuth(); 
     return {
-      login: (payload: { email: string, password: string, }) => {
+      handleLogin: (payload: { email: string, password: string, }) => {
         authStore.login(payload);
         authStore.getUser();
       },
-      authNotif: computed(() => authStore.$state.authNotif),
+      authMessage: computed(() => authStore.$state.authMessage),
     };
   },
 });
 </script>
 
 <style scoped lang="sass">
-@use './style/_generic-window'
+@use '../style/_generic-window'
 </style>

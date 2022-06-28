@@ -8,13 +8,13 @@ import router from '../router'
 export const useAuth = defineStore('useAuth', {
   state: () => {
     return {
-      authNotif: String(),
-      registerNotif: String(),
+      authMessage: String(),
+      registerMessage: String(),
       authentificated: Boolean(),
       nameStatic: String(),
       profile: Object(),
-      restoreReqNotif: String(),
-      restoreCommitNotif: String(),
+      restoreReqMessage: String(),
+      restoreCommitMessage: String(),
     };
   },
   getters: {
@@ -30,7 +30,7 @@ export const useAuth = defineStore('useAuth', {
         this.authentificated = true;
         this.nameStatic = this.profile.name;
       } else {
-        this.authNotif = resp.data.message,
+        this.authMessage = resp.data.message,
         this.authentificated = false;
       }
     },
@@ -48,20 +48,20 @@ export const useAuth = defineStore('useAuth', {
         this.nameStatic = this.profile.name;
       } else {
         this.authentificated = false;
-        this.registerNotif = resp.data.message;
+        this.registerMessage = resp.data.message;
       }
     },
     async restoreRequest(payload: { email: string }) {
       const resp = await restoreRequest(payload);
-      this.restoreReqNotif = resp.data;
+      this.restoreReqMessage = resp.data;
       console.log(resp);
     },
     async restoreCommit(payload: { token: string, password: string, password_confirmation: string }) {
       const resp = await restoreCommit(payload);
       if (resp.status === 500) {
-        this.restoreCommitNotif = 'Ваша ссылка не действительна.'
+        this.restoreCommitMessage = 'Ваша ссылка не действительна.'
       } else {
-        this.restoreCommitNotif = resp.data.message;
+        this.restoreCommitMessage = resp.data.message;
       }
     },
     async getUser() {

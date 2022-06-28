@@ -3,18 +3,18 @@
   img(
     v-if='!theme'
     class='rounded-lg cursor-pointer theme-button'
-    src='./style/moon.svg'
+    src='../media/moon.svg'
     width='30'
     height='30'
-    @click='switchDarkMode(true)',
+    @click='handleDarkModeSwitch(true)',
   )
   img(
     v-if='theme'
     class='rounded-lg cursor-pointer theme-button'
-    src='./style/sun.svg'
+    src='../media/sun.svg'
     width='30'
     height='30'
-    @click='switchDarkMode(false)',
+    @click='handleDarkModeSwitch(false)',
   )
   .top-nav-bar__block-container
     router-link(
@@ -41,7 +41,7 @@
       v-if='authentificated'
       to='/auth'
       class='top-nav-bar__block nav-bar-block-text rl-ns'
-      @click='logout'
+      @click='handleLogout'
     ) Log-out
 div(:class='theme ? "dark" : "light"')
   <router-view></router-view>
@@ -66,15 +66,15 @@ export default defineComponent({
       nameStatic: computed(() => authStore.$state.nameStatic),
       authentificated: computed(() => authStore.getAuthState),
       theme: computed(() => themeStore.getMode),
-      switchDarkMode: (mode: boolean) => themeStore.SWITCH_DARK_MODE(mode),
-      logout: () => authStore.logout(),
+      handleDarkModeSwitch: (mode: boolean) => themeStore.SWITCH_DARK_MODE(mode),
+      handleLogout: () => authStore.logout(),
     };
   },
 });
 </script>
 
 <style scoped lang="sass">
-@use './style/_textpresets'
+@use '../style/_textpresets'
 .top-nav-bar
   position: fixed
   top: 0px

@@ -10,12 +10,12 @@
     )
   span(
     class='common-text cursor-pointer grey-hover generic-window__button dark:text-white'
-    @click='restoreRequest({ email })'
+    @click='handleRestoreRequest({ email })'
   ) Отправить
   div(
-    class='generic-window__notification notif_green'
-    v-if='restoreReqNotif !== ""'
-  ) {{ restoreReqNotif }}
+    class='generic-window__message message_green'
+    v-if='restoreReqMessage !== ""'
+  ) {{ restoreReqMessage }}
 </template>
 
 <script lang='ts'>
@@ -33,13 +33,13 @@ export default defineComponent({
   setup() {
     const authStore = useAuth(); 
     return {
-      restoreRequest: (payload: { email: string }) => { authStore.restoreRequest(payload); },
-      restoreReqNotif: computed(() => authStore.$state.restoreReqNotif),
+      handleRestoreRequest: (payload: { email: string }) => { authStore.restoreRequest(payload); },
+      restoreReqMessage: computed(() => authStore.$state.restoreReqMessage),
     };
   },
 });
 </script>
 
 <style scoped lang="sass">
-@use './style/_generic-window'
+@use '../style/_generic-window'
 </style>

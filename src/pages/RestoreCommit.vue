@@ -16,18 +16,18 @@
     )
   span(
     class='common-text cursor-pointer grey-hover generic-window__button dark:text-white'
-    @click='restoreCommit({ token, password, password_confirmation }); validatePassword(password)'
+    @click='handleRestoreCommit({ token, password, password_confirmation }); handlePasswordValidation(password)'
   ) Отправить
   div(
-    class='generic-window__notification notif_red'
+    class='generic-window__message message_red'
     v-if='!validPw'
     v-for='error in errors'
     :key='error'
   ) {{ error }}
   div(
-    class='generic-window__notification notif_red'
-    v-if='restoreCommitNotif !== ""'
-  ) {{ restoreCommitNotif }}
+    class='generic-window__message message_red'
+    v-if='restoreCommitMessage !== ""'
+  ) {{ restoreCommitMessage }}
 </template>
 
 <script lang='ts'>
@@ -49,16 +49,16 @@ export default defineComponent({
     const authStore = useAuth();
     const validationStore = useValidation();
     return {
-      restoreCommit: (payload: { token: string, password: string, password_confirmation: string }) => { authStore.restoreCommit(payload); },
-      restoreCommitNotif: computed(() => authStore.$state.restoreCommitNotif),
+      handleRestoreCommit: (payload: { token: string, password: string, password_confirmation: string }) => { authStore.restoreCommit(payload); },
+      handlePasswordValidation: (password: string) => validationStore.validatePassword(password),
+      restoreCommitMessage: computed(() => authStore.$state.restoreCommitMessage),
       errors:  computed(() => validationStore.$state.errors_pw),
       validPw:  computed(() => validationStore.$state.flag_pw),
-      validatePassword: (password: string) => validationStore.validatePassword(password),
     };
   },
 });
 </script>
 
 <style scoped lang="sass">
-@use './style/_generic-window'
+@use '../style/_generic-window'
 </style>

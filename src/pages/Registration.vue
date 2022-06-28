@@ -24,12 +24,12 @@
     )
   span(
     class='common-text cursor-pointer grey-hover generic-window__button dark:text-white'
-    @click='register({ email, name, type })'
+    @click='handleRegister({ email, name, type })'
   ) Подтвердить
   div(
-    class='generic-window__notification notif_red'
-    v-if='registerNotif !== ""'
-  ) {{ registerNotif }}
+    class='generic-window__message message_red'
+    v-if='registerMessage !== ""'
+  ) {{ registerMessage }}
 </template>
 
 <script lang='ts'>
@@ -49,13 +49,13 @@ export default defineComponent({
   setup() {
     const authStore = useAuth(); 
     return {
-      register: (payload: { email: string, name: string, type: string }) => { authStore.register(payload); },
-      registerNotif: computed(() => authStore.$state.registerNotif),
+      handleRegister: (payload: { email: string, name: string, type: string }) => { authStore.register(payload); },
+      registerMessage: computed(() => authStore.$state.registerMessage),
     };
   },
 });
 </script>
 
 <style scoped lang="sass">
-@use './style/_generic-window'
+@use '../style/_generic-window'
 </style>

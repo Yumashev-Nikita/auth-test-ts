@@ -65,10 +65,10 @@
     )
   span(
     class='common-text cursor-pointer grey-hover dark:text-white'
-    @click='updateUser(profile)'
+    @click='handleUserUpdate(profile)'
   ) Сохранить
   div(
-    class='generic-window__notification notif_red'
+    class='generic-window__message message_red'
     v-if='!validProfile'
     v-for='error in errors'
     :key='error'
@@ -90,7 +90,7 @@ export default defineComponent({
     const validationStore = useValidation();
     return {
       profile: computed(() => authStore.$state.profile),
-      updateUser: (payload: any) => authStore.updateUser(payload),
+      handleUserUpdate: (payload: any) => authStore.updateUser(payload),
       theme: computed(() => themeStore.getMode),
       validProfile: computed(() => validationStore.$state.flag_profile),
       errors: computed(() => validationStore.$state.errors_profile),
@@ -100,5 +100,5 @@ export default defineComponent({
 </script>
 
 <style lang='sass' scoped>
-@use './style/_generic-window'
+@use '../style/_generic-window'
 </style>
